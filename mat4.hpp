@@ -1,7 +1,13 @@
 #ifndef _OGR_MAT4_HPP_HEADER_FILE_GUARD
 #define _OGR_MAT4_HPP_HEADER_FILE_GUARD
 
+#include <cmath>
+#include <cstring>
+
 /* Matrix Operations */
+/* All of these require a pointer to float and name it _mat. 
+Some of these require a pointer to float and name it _in.
+These pointers should point to a predefined array of floats, with 16 elements. */
 namespace Mat4 {
 	void Identity(float* _mat) {
 		memset(_mat, 0, 16 * sizeof(float));
