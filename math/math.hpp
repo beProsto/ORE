@@ -1,6 +1,9 @@
 #ifndef _OGR_MATH_HPP_HEADER_FILE_GUARD
 #define _OGR_MATH_HPP_HEADER_FILE_GUARD
 
+#include <cmath>
+#include "mat4.hpp"
+
 /* Math Operations */
 namespace Math {
 	float Rad(float _a) {
@@ -11,6 +14,5 @@ namespace Math {
 	}
 }
 
-#include "mat4.hpp"
 
 #endif/*_OGR_MATH_HPP_HEADER_FILE_GUARD*/

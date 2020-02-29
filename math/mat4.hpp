@@ -8,6 +8,7 @@
 /* All of these require a pointer to float and name it _mat. 
 Some of these require a pointer to float and name it _in.
 These pointers should point to a predefined array of floats, with 16 elements. */
+namespace Math {
 namespace Mat4 {
 	void Identity(float* _mat) {
 		memset(_mat, 0, 16 * sizeof(float));
@@ -195,6 +196,18 @@ namespace Mat4 {
 		_mat[10] = in22 * c - in12 * s;
 		_mat[11] = in23 * c - in13 * s;
 	}
-};
+	void Scale(float* _mat, float _x, float _y, float _z) {
+		_mat[0] *= _x;
+		_mat[5] *= _y;
+		_mat[10] *= _z;
+	}
+	void Scale(float* _mat, float* _in, float _x, float _y, float _z) {
+		memcpy(_mat, _in, 16 * sizeof(float));
+		_mat[0] *= _x;
+		_mat[5] *= _y;
+		_mat[10] *= _z;
+	}
+}
+}
 
 #endif/*_OGR_MAT4_HPP_HEADER_FILE_GUARD*/
