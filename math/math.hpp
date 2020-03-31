@@ -1,5 +1,5 @@
-#ifndef _OGR_MATH_HPP_HEADER_FILE_GUARD
-#define _OGR_MATH_HPP_HEADER_FILE_GUARD
+#ifndef _ORE_MATH_HPP_HEADER_FILE_GUARD
+#define _ORE_MATH_HPP_HEADER_FILE_GUARD
 
 #include <cmath>
 #include "mat4.hpp"
@@ -97,4 +97,4 @@ namespace Math {
 }
 
 
-#endif/*_OGR_MATH_HPP_HEADER_FILE_GUARD*/
+#endif/*_ORE_MATH_HPP_HEADER_FILE_GUARD*/

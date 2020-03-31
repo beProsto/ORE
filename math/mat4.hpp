@@ -1,5 +1,5 @@
-#ifndef _OGR_MAT4_HPP_HEADER_FILE_GUARD
-#define _OGR_MAT4_HPP_HEADER_FILE_GUARD
+#ifndef _ORE_MAT4_HPP_HEADER_FILE_GUARD
+#define _ORE_MAT4_HPP_HEADER_FILE_GUARD
 
 #include <cmath>
 #include <cstring>
@@ -251,4 +251,4 @@ namespace _Mat4 {
 }
 }
 
-#endif/*_OGR_MAT4_HPP_HEADER_FILE_GUARD*/
+#endif/*_ORE_MAT4_HPP_HEADER_FILE_GUARD*/
