@@ -49,7 +49,12 @@ namespace Math {
 			_Mat4::Multiply(temp.m, m, _other.m);
 			return temp;
 		}
-
+		
+		static Mat4 Transpose(const Mat4& _in) {
+			Mat4 temp = _in;
+			_Mat4::Transpose(temp.m);
+			return temp;
+		}
 		static Mat4 Perspective(float _fov, float _aspect, float _near, float _far) {
 			Mat4 temp;
 			_Mat4::Perspective(temp.m, _fov, _aspect, _near, _far);

@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <cstring>
+#include <utility>
 
 /* Matrix Operations */
 /* All of these require a pointer to float and name it _mat. 
@@ -10,50 +11,73 @@ Some of these require a pointer to float and name it _in.
 These pointers should point to a predefined array of floats, with 16 elements. */
 namespace Math {
 namespace _Mat4 {
+	void Copy(float* _mat, const float* _in) {
+		memcpy(_mat, _in, 16 * sizeof(float));
+	}
 	void Identity(float* _mat) {
 		memset(_mat, 0, 16 * sizeof(float));
 		_mat[0] = _mat[5] = _mat[10] = _mat[15] = 1.0f;
 	}
+	void Transpose(float* _mat) {
+		std::swap(_mat[1], _mat[4]);
+		std::swap(_mat[2], _mat[8]);
+		std::swap(_mat[3], _mat[12]);
+		std::swap(_mat[7], _mat[13]);
+		std::swap(_mat[11], _mat[14]);
+		std::swap(_mat[6], _mat[9]);
+	}
 	void Multiply(float* _mat, const float* _a, const float* _b) {
+		float* a = (float*)_a; 
+		bool aAllocated = false;
+		if(_a == _mat) {
+			a = new float[16];	
+			aAllocated = true;
+			memcpy(a, _a, 16 * sizeof(float));	
+		}
+
 		float b0 = _b[0],
 			b1 = _b[1],
 			b2 = _b[2],
 			b3 = _b[3];
 
-		_mat[0] = b0 * _a[0] + b1 * _a[4] + b2 * _a[8] + b3 * _a[12];
-		_mat[1] = b0 * _a[1] + b1 * _a[5] + b2 * _a[9] + b3 * _a[13];
-		_mat[2] = b0 * _a[2] + b1 * _a[6] + b2 * _a[10] + b3 * _a[14];
-		_mat[3] = b0 * _a[3] + b1 * _a[7] + b2 * _a[11] + b3 * _a[15];
+		_mat[0] = b0 * a[0] + b1 * a[4] + b2 * a[8] + b3 * a[12];
+		_mat[1] = b0 * a[1] + b1 * a[5] + b2 * a[9] + b3 * a[13];
+		_mat[2] = b0 * a[2] + b1 * a[6] + b2 * a[10] + b3 * a[14];
+		_mat[3] = b0 * a[3] + b1 * a[7] + b2 * a[11] + b3 * a[15];
 
 		b0 = _b[4];
 		b1 = _b[5];
 		b2 = _b[6];
 		b3 = _b[7];
 
-		_mat[4] = b0 * _a[0] + b1 * _a[4] + b2 * _a[8] + b3 * _a[12];
-		_mat[5] = b0 * _a[1] + b1 * _a[5] + b2 * _a[9] + b3 * _a[13];
-		_mat[6] = b0 * _a[2] + b1 * _a[6] + b2 * _a[10] + b3 * _a[14];
-		_mat[7] = b0 * _a[3] + b1 * _a[7] + b2 * _a[11] + b3 * _a[15];
+		_mat[4] = b0 * a[0] + b1 * a[4] + b2 * a[8] + b3 * a[12];
+		_mat[5] = b0 * a[1] + b1 * a[5] + b2 * a[9] + b3 * a[13];
+		_mat[6] = b0 * a[2] + b1 * a[6] + b2 * a[10] + b3 * a[14];
+		_mat[7] = b0 * a[3] + b1 * a[7] + b2 * a[11] + b3 * a[15];
 
 		b0 = _b[8];
 		b1 = _b[9];
 		b2 = _b[10];
 		b3 = _b[11];
 
-		_mat[8] = b0 * _a[0] + b1 * _a[4] + b2 * _a[8] + b3 * _a[12];
-		_mat[9] = b0 * _a[1] + b1 * _a[5] + b2 * _a[9] + b3 * _a[13];
-		_mat[10] = b0 * _a[2] + b1 * _a[6] + b2 * _a[10] + b3 * _a[14];
-		_mat[11] = b0 * _a[3] + b1 * _a[7] + b2 * _a[11] + b3 * _a[15];
+		_mat[8] = b0 * a[0] + b1 * a[4] + b2 * a[8] + b3 * a[12];
+		_mat[9] = b0 * a[1] + b1 * a[5] + b2 * a[9] + b3 * a[13];
+		_mat[10] = b0 * a[2] + b1 * a[6] + b2 * a[10] + b3 * a[14];
+		_mat[11] = b0 * a[3] + b1 * a[7] + b2 * a[11] + b3 * a[15];
 
 		b0 = _b[12];
 		b1 = _b[13];
 		b2 = _b[14];
 		b3 = _b[15];
 
-		_mat[12] = b0 * _a[0] + b1 * _a[4] + b2 * _a[8] + b3 * _a[12];
-		_mat[13] = b0 * _a[1] + b1 * _a[5] + b2 * _a[9] + b3 * _a[13];
-		_mat[14] = b0 * _a[2] + b1 * _a[6] + b2 * _a[10] + b3 * _a[14];
-		_mat[15] = b0 * _a[3] + b1 * _a[7] + b2 * _a[11] + b3 * _a[15];
+		_mat[12] = b0 * a[0] + b1 * a[4] + b2 * a[8] + b3 * a[12];
+		_mat[13] = b0 * a[1] + b1 * a[5] + b2 * a[9] + b3 * a[13];
+		_mat[14] = b0 * a[2] + b1 * a[6] + b2 * a[10] + b3 * a[14];
+		_mat[15] = b0 * a[3] + b1 * a[7] + b2 * a[11] + b3 * a[15];
+		
+		if(aAllocated) {
+			delete[] a;
+		}
 	}
 	void Perspective(float* _mat, float _fov, float _aspect, float _near, float _far) {
 		memset(_mat, 0, 16 * sizeof(float));
