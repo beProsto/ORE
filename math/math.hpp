@@ -8,6 +8,7 @@
 #endif/*M_PI*/
 
 #include "mat4.hpp"
+#include "vec4.hpp"
 
 /* Math Operations */
 namespace Math {
