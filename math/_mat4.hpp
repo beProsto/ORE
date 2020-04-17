@@ -67,7 +67,13 @@ namespace Math {
 			_mat[12] = inv[12] * det;
 			_mat[13] = inv[13] * det;
 			_mat[14] = inv[14] * det;
-			_mat[15] = inv[15s] * det;
+			_mat[15] = inv[15] * det;
+		}
+		void MultiplyByVec4(float* _retX, float* _retY, float* _retZ, float* _retW, const float* _mat, float _x, float _y, float _z, float _w) {
+			*_retX = _mat[0] * _x + _mat[1] * _y + _mat[2] * _z + _mat[3] * _w;
+			*_retY = _mat[4] * _x + _mat[5] * _y + _mat[6] * _z + _mat[7] * _w;
+			*_retZ = _mat[8] * _x + _mat[9] * _y + _mat[10] * _z + _mat[11] * _w;
+			*_retW = _mat[12] * _x + _mat[13] * _y + _mat[14] * _z + _mat[15] * _w;
 		}
 		void Multiply(float* _mat, const float* _a, const float* _b) {
 			float* a = (float*)_a; 

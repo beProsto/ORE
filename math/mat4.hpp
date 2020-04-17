@@ -2,6 +2,7 @@
 #define _ORE_MAT4_HPP_HEADER_FILE_GUARD
 
 #include "_mat4.hpp"
+#include "vec4.hpp"
 
 namespace Math {
 	class Mat4 {
@@ -30,6 +31,7 @@ namespace Math {
 			memcpy(m, _other.m, 16 * sizeof(float));
 			return *this;
 		}
+
 		Mat4& operator*=(const Mat4& _other) {
 			_Mat4::Multiply(m, m, _other.m);
 			return *this;
@@ -37,6 +39,11 @@ namespace Math {
 		Mat4 operator*(const Mat4& _other) const {
 			Mat4 temp;
 			_Mat4::Multiply(temp.m, m, _other.m);
+			return temp;
+		}
+		Vec4 operator*(const Vec4& _a) const {
+			Vec4 temp;
+			_Mat4::MultiplyByVec4(&temp.x, &temp.y, &temp.z, &temp.w, m, _a.x, _a.y, _a.z, _a.w);
 			return temp;
 		}
 		
