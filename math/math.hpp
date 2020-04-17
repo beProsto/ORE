@@ -2,6 +2,11 @@
 #define _ORE_MATH_HPP_HEADER_FILE_GUARD
 
 #include <cmath>
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846264338327950288
+#endif/*M_PI*/
+
 #include "mat4.hpp"
 
 /* Math Operations */

@@ -39,6 +39,11 @@ public:
 		return temp;
 	}
 	
+	static Mat4 Inverse(const Mat4& _in) {
+		Mat4 temp = _in;
+		_Mat4::Inverse(temp.m);
+		return temp;
+	}
 	static Mat4 Transpose(const Mat4& _in) {
 		Mat4 temp = _in;
 		_Mat4::Transpose(temp.m);
